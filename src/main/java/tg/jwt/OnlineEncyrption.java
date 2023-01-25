@@ -2,6 +2,9 @@ package tg.jwt;
 
 import java.nio.charset.Charset;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.kms.KmsClient;
@@ -76,7 +79,10 @@ public class OnlineEncyrption {
 		}
 
 		String secret = getSecretValueResponse.secretString();
-
+		JsonObject jsonObject = JsonParser.parseString(secret).getAsJsonObject();
+		System.out.println(jsonObject.get("username"));
+		System.out.println(jsonObject.get("password"));
+		
 		// Your code goes here.
 		System.out.println(secret);
 	}
